@@ -324,7 +324,7 @@ J’ai fait mon apprentissage chez Essilor qui est le N°1 mondial de l'optique 
             Planification, Organisation des tâches</li>
           <li>
             <i class="fa-li fa fa-check"></i>
-           autre trucs </li>
+           Méthodes agiles, réseau, veille informatique, modélisation donnée, </li>
         </ul>
       </div>
     </section>
@@ -366,35 +366,33 @@ J’ai fait mon apprentissage chez Essilor qui est le N°1 mondial de l'optique 
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
       <div class="w-100">
-        <h2 class="mb-5">Awards &amp; Certifications</h2>
-        <ul class="fa-ul mb-0">
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Google Analytics Certified Developer</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Mobile Web Specialist - Google Certification</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            1<sup>st</sup>
-            Place - University of Colorado Boulder - Emerging Tech Competition 2009</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            1<sup>st</sup>
-            Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            2<sup>nd</sup>
-            Place - University of Colorado Boulder - Emerging Tech Competition 2008</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            1<sup>st</sup>
-            Place - James Buchanan High School - Hackathon 2006</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            3<sup>rd</sup>
-            Place - James Buchanan High School - Hackathon 2005</li>
-        </ul>
+       <h1>Contact</h1>
+    <form method="post">
+        <label>Nom</label>
+        <input type="text" name="nom" required>
+        <label>Email</label>
+        <input type="email" name="email" required>
+        <label>Message</label>
+        <textarea name="message" required></textarea>
+        <input type="submit">
+    </form>
+    <?php
+    if(isset($_POST['message'])){
+        $entete  = 'MIME-Version: 1.0' . "\r\n";
+        $entete .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+        $entete .= 'From: ' . $_POST['email'] . "\r\n";
+
+        $message = '<h1>Message envoyé depuis la page Contact de monsite.fr</h1>
+        <p><b>Nom : </b>' . $_POST['nom'] . '<br>
+        <b>Email : </b>' . $_POST['email'] . '<br>
+        <b>Message : </b>' . $_POST['message'] . '</p>';
+
+        $retour = mail('destinataire@free.fr', 'Envoi depuis page Contact', $message, $entete);
+        if($retour) {
+            echo '<p>Votre message a bien été envoyé.</p>';
+        }
+    }
+    ?>
       </div>
     </section>
 
